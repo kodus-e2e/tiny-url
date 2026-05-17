@@ -2,22 +2,20 @@
  * In-memory key/value store. Reset on process restart — intentional for
  * the demo; swap for Redis or Postgres in a real deployment.
  */
-const data: Record<string, string> = Object.create(null);
+const data = new Map<string, string>();
 
 export function store(code: string, url: string): void {
-    data[code] = url;
+    data.set(code, url);
 }
 
 export function load(code: string): string | undefined {
-    return data[code];
+    return data.get(code);
 }
 
 export function size(): number {
-    return Object.keys(data).length;
+    return data.size;
 }
 
 export function clear(): void {
-    for (const k of Object.keys(data)) {
-        delete data[k];
-    }
+    data.clear();
 }
