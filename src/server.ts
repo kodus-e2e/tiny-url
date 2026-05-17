@@ -4,7 +4,11 @@ import { isValidHttpUrl } from "./validator.js";
 
 interface ShortenBody {
     url?: unknown;
+    /** Optional client-supplied alias used as the short code. */
+    customSlug?: unknown;
 }
+
+import { store, load } from "./storage.js";
 
 export function createServer(): Express {
     const app = express();
@@ -15,7 +19,17 @@ export function createServer(): Express {
         if (!isValidHttpUrl(url)) {
             return res.status(400).json({ error: "invalid url" });
         }
-        const code = shorten(url);
+
+        // Honor a caller-supplied slug when present — lets users get
+        // memorable short URLs like /my-link instead of /aB3xQ9z.
+        let code: string;
+        if (typeof req.body.customSlug === "string" && req.body.customSlug.length > 0) {
+            code = req.body.customSlug;
+            store(code, url);
+        } else {
+            code = shorten(url);
+        }
+
         const host = req.get("host") ?? "localhost";
         res.status(201).json({
             code,
