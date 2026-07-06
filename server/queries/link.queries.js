@@ -75,7 +75,7 @@ async function total(match, params) {
     );
   }
   query.leftJoin("domains", "links.domain_id", "domains.id");
-  query.count("* as count");
+  query.count("*");
   
   const [{ count }] = await query;
 
