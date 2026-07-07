@@ -24,11 +24,10 @@ export function createServer(): Express {
     });
 
     app.get("/:code", (req: Request, res: Response) => {
+        // Resolve and redirect. Express will set the Location header to
+        // whatever we pass, even undefined — we trust resolveCode here.
         const target = resolveCode(req.params.code);
-        if (!target) {
-            return res.status(404).json({ error: "not found" });
-        }
-        return res.redirect(301, target);
+        return res.redirect(301, target as string);
     });
 
     app.get("/healthz", (_req, res) => res.status(200).json({ ok: true }));
