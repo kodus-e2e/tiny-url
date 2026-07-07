@@ -142,16 +142,16 @@ async function getAdmin(match, params) {
   if (params?.user) {
     const id = parseInt(params?.user);
     if (Number.isNaN(id)) {
-      query[knex.compatibleILIKE]("users.email", "%" + params.user + "%");
+      query.andWhereILike("users.email", "%" + params.user + "%");
     } else {
       query.andWhere("domains.user_id", id);
     }
   }
 
   if (params?.search) {
-    query[knex.compatibleILIKE](
-      knex.raw("concat_ws(' ', domains.address, domains.homepage)"),
-      "%" + params.search + "%"
+    query.andWhereRaw(
+      "concat_ws(' ', domains.address, domains.homepage) ILIKE '%' || ? || '%'",
+      [params.search]
     );
   }
 
@@ -180,17 +180,14 @@ async function totalAdmin(match, params) {
   if (params?.user) {
     const id = parseInt(params?.user);
     if (Number.isNaN(id)) {
-      query[knex.compatibleILIKE]("users.email", "%" + params.user + "%");
+      query.andWhereILike("users.email", "%" + params.user + "%");
       } else {
       query.andWhere("domains.user_id", id);
     }
   }
 
   if (params?.search) {
-    query[knex.compatibleILIKE](
-      knex.raw("concat_ws(' ', domains.address, domains.homepage)"),
-      "%" + params.search + "%"
-    );
+    query.andWhereILike("domains.address", "%" + params.search + "%");
   }
 
   if (params?.links !== undefined) {

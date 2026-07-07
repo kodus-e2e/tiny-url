@@ -28,6 +28,4 @@ db.isPostgres = isPostgres;
 db.isSQLite = isSQLite;
 db.isMySQL = isMySQL;
 
-db.compatibleILIKE = isPostgres ? "andWhereILike" : "andWhereLike";
-
 module.exports = db;
