@@ -1,5 +1,5 @@
 ---
-title: "e2e-file-sync-rule 511c9e-2ec3e0"
+title: "e2e-file-sync-rule 8d48c2-e2c38d"
 scope: "file"
 path: ["src/e2e_sync/**/*.ts", "lib/e2e_sync/**/*.ts"]
 severity_min: "high"
