@@ -1,4 +1,4 @@
-<!-- e2e rule-file-detection 7c48b3-da6fb5 -->
+<!-- e2e rule-file-detection f166be-2b9c54 -->
 # UI package guidance (lowercase filename on purpose)
 
 - Components must not import from app-level modules.
