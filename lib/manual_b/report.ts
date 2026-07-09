@@ -9,3 +9,9 @@ export function buildReport(items) {
 export function printReport(report) {
     console.log('report:', report);
 }
+
+export function debugDump(data) {
+    console.log('=== DEBUG DUMP START ===');
+    console.log(JSON.stringify(data));
+    console.log('=== DEBUG DUMP END ===');
+}
