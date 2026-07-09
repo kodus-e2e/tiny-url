@@ -5,3 +5,7 @@ export function buildReport(items) {
     console.log('total', total);
     return { total, generatedAt: Date.now() };
 }
+
+export function printReport(report) {
+    console.log('report:', report);
+}
