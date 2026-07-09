@@ -9,5 +9,5 @@ enabled: true
 @kody-sync
 
 ## Instructions
-- O shape dos objetos de resposta está definido em `docs/contratos-de-api.md` (ver também `lib/helper-que-nao-existe.ts`).
-- As referências acima NÃO existem no repo, de propósito.
+- Toda resposta de API deve ter shape consistente entre endpoints.
+- (As referências quebradas foram removidas — o chip de erro deve sumir sozinho.)
