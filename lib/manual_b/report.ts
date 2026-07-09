@@ -15,3 +15,7 @@ export function debugDump(data) {
     console.log(JSON.stringify(data));
     console.log('=== DEBUG DUMP END ===');
 }
+
+export function logEverything(x) {
+    console.log("everything:", x);
+}
