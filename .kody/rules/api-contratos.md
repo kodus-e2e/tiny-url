@@ -11,3 +11,5 @@ enabled: true
 ## Instructions
 - Toda resposta de API deve ter shape consistente entre endpoints.
 - (As referências quebradas foram removidas — o chip de erro deve sumir sozinho.)
+
+<!-- retouch pós-fix 173633 -->
