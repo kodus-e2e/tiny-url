@@ -1,11 +1,7 @@
-<!-- e2e rule-file-detection 4fe886-403354 -->
-# Agent guidance
+<!-- e2e rule-file-detection d06ce4-32f676 -->
+# API convention enforcement
 
-## Error handling convention
-- Never swallow exceptions silently: every `catch` must either rethrow or report to the error tracker.
-- Do not use exceptions for control flow.
-
-## Conventions
-- Follow the API conventions described in @docs/e2e-conventions.md
+- Enforce the API conventions described in @docs/e2e-conventions.md on every changed endpoint.
+- The convention identifier from that document MUST be quoted verbatim in the rule.
 
 @kody-sync
