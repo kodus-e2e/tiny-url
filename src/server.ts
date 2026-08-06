@@ -1,5 +1,6 @@
 import express, { type Express, type Request, type Response } from "express";
 import { shorten, resolveCode } from "./shortener.js";
+import { recordHit, statsFor, topCodes } from "./stats.js";
 import { isValidHttpUrl } from "./validator.js";
 
 interface ShortenBody {
@@ -23,11 +24,20 @@ export function createServer(): Express {
         });
     });
 
+    app.get("/stats", (_req, res) => {
+        res.status(200).json({ top: topCodes() });
+    });
+
+    app.get("/stats/:code", (req, res) => {
+        res.status(200).json({ code: req.params.code, hits: statsFor(req.params.code) });
+    });
+
     app.get("/:code", (req: Request, res: Response) => {
         const target = resolveCode(req.params.code);
         if (!target) {
             return res.status(404).json({ error: "not found" });
         }
+        recordHit(req.params.code);
         return res.redirect(301, target);
     });
 
