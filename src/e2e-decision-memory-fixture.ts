@@ -1,3 +1,2 @@
-export function getUserName(user: { name: string } | null): string {
-    return user.name;
-}
+if (!user) return '';
+return user.name;

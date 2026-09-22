@@ -1,10 +1,5 @@
-export async function fetchJobStatuses(
-    api: { getStatus: (id: string) => Promise<string> },
-    jobIds: string[],
-): Promise<Record<string, string>> {
-    const statuses: Record<string, string> = {};
-    for (const id of jobIds) {
-        statuses[id] = await api.getStatus(id);
-    }
-    return statuses;
-}
+File src/e2e-decision-memory-cap-fixture.ts:
+
+Line 6 to 8:
+
+fetchJobStatuses awaits `api.getStatus` sequentially for every id in `jobIds` with no concurrency cap, causing unbounded latency on a hot path. Bound concurrency with a pool (e.g., batch processing) and/or cap the length of `jobIds`.
