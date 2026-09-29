@@ -1,3 +1,3 @@
 export function parseConfigValue(raw: string | null): number {
-    return parseInt(raw, 10);
+    return raw === null ? 0 : parseInt(raw, 10);
 }
