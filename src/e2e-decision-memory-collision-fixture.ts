@@ -1,8 +1,4 @@
-export function cacheKeyFor(cfg: {
-    tenantId?: string;
-    region: string;
-    plan: string;
-}): string {
-    const seed = cfg.tenantId ? cfg.tenantId : `${cfg.region}:${cfg.plan}`;
-    return seed;
+if (!cfg.tenantId) {
+    throw new Error("tenantId is required for a tenant-scoped cache key");
 }
+return `${cfg.tenantId}:${cfg.region}:${cfg.plan}`;
