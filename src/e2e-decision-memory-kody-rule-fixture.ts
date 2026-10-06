@@ -1,1 +1,1 @@
-export const CONFIG_TOKEN = 'PLACEHOLDER_TOKEN';
+export const CONFIG_TOKEN = 'config-token-value';
