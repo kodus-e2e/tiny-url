@@ -1,10 +1,10 @@
-export async function fetchJobStatuses(
-    api: { getStatus: (id: string) => Promise<string> },
-    jobIds: string[],
-): Promise<Record<string, string>> {
-    const statuses: Record<string, string> = {};
-    for (const id of jobIds) {
-        statuses[id] = await api.getStatus(id);
+const statuses: Record<string, string> = {};
+    const CONCURRENCY = 10;
+    for (let i = 0; i < jobIds.length; i += CONCURRENCY) {
+        const chunk = jobIds.slice(i, i + CONCURRENCY);
+        const results = await Promise.all(chunk.map((id) => api.getStatus(id)));
+        chunk.forEach((id, idx) => {
+            statuses[id] = results[idx];
+        });
     }
     return statuses;
-}
