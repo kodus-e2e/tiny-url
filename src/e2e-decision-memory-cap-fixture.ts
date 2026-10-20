@@ -1,10 +1,4 @@
-export async function fetchJobStatuses(
-    api: { getStatus: (id: string) => Promise<string> },
-    jobIds: string[],
-): Promise<Record<string, string>> {
-    const statuses: Record<string, string> = {};
-    for (const id of jobIds) {
-        statuses[id] = await api.getStatus(id);
-    }
-    return statuses;
+const MAX_FANOUT = 50;
+for (const id of jobIds.slice(0, MAX_FANOUT)) {
+    statuses[id] = await api.getStatus(id);
 }
