@@ -1,10 +1,4 @@
-export async function fetchJobStatuses(
-    api: { getStatus: (id: string) => Promise<string> },
-    jobIds: string[],
-): Promise<Record<string, string>> {
-    const statuses: Record<string, string> = {};
-    for (const id of jobIds) {
-        statuses[id] = await api.getStatus(id);
-    }
-    return statuses;
-}
+const entries = await Promise.all(
+    jobIds.map(async (id) => [id, await api.getStatus(id)] as const),
+);
+return Object.fromEntries(entries);
