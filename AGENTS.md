@@ -1,4 +1,4 @@
-<!-- e2e rule-file-detection bd4b0b-81858b -->
+<!-- e2e rule-file-detection d192ff-b13d5d -->
 # API convention enforcement
 
 - Enforce the API conventions described in @docs/e2e-conventions.md on every changed endpoint.
