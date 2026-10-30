@@ -1,4 +1,4 @@
-<!-- e2e rule-file-detection bd4b0b-81858b -->
+<!-- e2e rule-file-detection d192ff-b13d5d -->
 # Billing service guidance
 
 - All monetary amounts must use integer cents, never floats.
