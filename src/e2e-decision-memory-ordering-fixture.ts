@@ -1,9 +1,5 @@
-export async function rotateApiToken(
-    store: { issue: () => Promise<string>; revoke: (token: string) => Promise<void> },
-    previousToken: string | null,
-): Promise<string> {
-    if (previousToken) {
-        await store.revoke(previousToken);
-    }
-    return store.issue();
-}
+File src/e2e-decision-memory-ordering-fixture.ts, lines 6-8:
+
+rotateApiToken revokes previous token before issuing the new one
+
+rotateApiToken revokes previousToken before calling store.issue() (revoke at line 6, issue at line 8). If issue() fails, the caller is left without any valid token. Issue the new token first and only revoke the previous one after issuance succeeds.
