@@ -1,4 +1,4 @@
-<!-- e2e rule-file-detection f342d7-e1a605 -->
+<!-- e2e rule-file-detection eb43a0-8280e9 -->
 # API conventions
 
 - Every endpoint must set the X-E2E-Convention header (E2E_INLINE_TOKEN_7743).
