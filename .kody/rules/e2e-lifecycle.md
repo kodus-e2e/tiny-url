@@ -9,4 +9,4 @@ enabled: true
 @kody-sync
 
 ## Instructions
-- The response shape is documented in `docs/e2e-lifecycle-missing.md` (deliberately nonexistent).
+- Response shapes must stay consistent across endpoints. (references removed — PHASE2_FIXED)
